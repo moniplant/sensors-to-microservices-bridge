@@ -6,3 +6,11 @@
 python tester_publisher.py
 python tester_subscriber.py
 ```
+
+MQTT Broker is hosted on the Raspberry pi, reachable via ssh under `raspberrypi.local`.
+Credentials are: 
+
+```
+user: pi
+pwd: root
+```

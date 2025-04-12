@@ -2,12 +2,17 @@ import paho.mqtt.client as mqtt
 import yaml
 import requests
 import time
+from dotenv import load_dotenv
+import os
 
-API_URL="http://localhost:3000"
+# Load .env file
+load_dotenv()
+
+API_URL = os.getenv("API_URL", "http://localhost:3000")
 
 # Define the MQTT server details
-MQTT_BROKER = "192.168.0.32"  # Replace with the host address of your MQTT server
-MQTT_PORT = 1883  # Default port for MQTT is 1883
+MQTT_BROKER = os.getenv("MQTT_BROKER", "192.168.0.32")
+MQTT_PORT = int(os.getenv("MQTT_PORT", 1883))
 
 with open('config.yml', 'r') as yaml_file:
     content = yaml.load(yaml_file, Loader=yaml.FullLoader)

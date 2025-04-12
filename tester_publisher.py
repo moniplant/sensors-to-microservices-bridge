@@ -1,8 +1,14 @@
 import paho.mqtt.client as mqtt
+from dotenv import load_dotenv
+import os
+
+# Load .env file
+load_dotenv()
 
 # Define the MQTT server details
-MQTT_BROKER = "192.168.0.32"  # Replace with the host address of your MQTT server
-MQTT_PORT = 1883  # Default port for MQTT is 1883
+# Read environment variables
+MQTT_BROKER = os.getenv("MQTT_BROKER", "192.168.0.32")
+MQTT_PORT = int(os.getenv("MQTT_PORT", 1883))
 MQTT_TOPIC = "/topic/qos0"  # Topic to publish to
 
 # Define the message to publish

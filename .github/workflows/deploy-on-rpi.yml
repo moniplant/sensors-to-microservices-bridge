@@ -1,0 +1,42 @@
+name: Deploy Tester Subscriber
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering of the workflow from GitHub Actions UI
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    # Step 1: Checkout the codebase
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Step 2: Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "latest"  # Always use the latest Python version
+
+    # Step 3: Create and activate a new virtual environment
+    - name: Create and activate virtual environment
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Step 4: Run the script as a daemon
+    - name: Run tester_subscriber.py
+      run: |
+        source .venv/bin/activate
+        nohup python tester_subscriber.py > tester_subscriber.log 2>&1 &
+      shell: bash

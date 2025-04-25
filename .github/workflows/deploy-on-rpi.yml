@@ -20,12 +20,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Step 2: Set up Python
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "latest"  # Always use the latest Python version
-
     # Step 3: Create and activate a new virtual environment
     - name: Create and activate virtual environment
       run: |

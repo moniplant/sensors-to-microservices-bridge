@@ -41,7 +41,7 @@ def send_data_to_api(plant_id, sensor_id, value):
         payload = {
             "plant_id": plant_id,
             "sensor_id": sensor_id,
-            "timestamp": time.time(),  # Current time in seconds since epoch
+            "ts": time.time(),  # Current time in seconds since epoch
             "value": value
         }
 
